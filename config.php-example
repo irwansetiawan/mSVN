@@ -1,0 +1,21 @@
+<?php
+
+// Your local directory where you store all your checked-out branches
+// and from where your dynamic hosts will be served from
+$baseDir = '/path/to/project/directory';
+
+// Your main host where all your dynamic hosts will be located
+$mainHost = 'my-domain.com';
+
+// Your base SVN repository URI
+$baseRepoUri = 'http://svn.my-domain.com/';
+
+// Username and passwords to your SVN repository
+$svnUsername = '';
+$svnPassword = '';
+
+$ignoredFoldersAndFiles = array(
+	'.',
+	'..',
+	'vbox'
+);
