@@ -1,12 +1,12 @@
 <?php
 
-$configFile = dirname(__FILE__).'/init.php';
 $configFile = dirname(__FILE__).'/config.php';
 
 if (!file_exists($configFile)) {
     die('Unable to find config.php! Please copy from config.php-example');
 }
 
+require_once dirname(__FILE__).'/init.php';
 require_once $configFile;
 
 $contents = scandir($baseDir);
