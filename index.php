@@ -44,7 +44,7 @@ foreach($homeDirs as $idx => $homeDir) {
     $outputLines = array();
     exec('cd '.$homeDir['path'].'; svn stat;', $outputLines);
     foreach($outputLines as $idx => $output) {
-        if (substr($output, 0, strlen($projectInitFile)+2) == '? '.$projectInitFile) {
+        if (preg_match('#^\?\s+'.$projectInitFile.'$#', $output) {
             unset($outputLines[$idx]);
         }
     }
