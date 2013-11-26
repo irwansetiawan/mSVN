@@ -2,6 +2,7 @@
 
 header("Content-Type: application/json");
 
+require_once dirname(__FILE__).'/init.php';
 require_once dirname(__FILE__).'/config.php';
 
 $svnUrl = filter_input(INPUT_POST, 'svnurl');
@@ -15,7 +16,7 @@ $outputLines = shell_exec('cd '.$baseDir.'; '.
                                         $svnUrl.' '.$dirname.' 2>&1;');
 
 shell_exec('cd '.$baseDir.'; '.
-           'touch '.$dirname.'/.mSVN');
+           'touch '.$dirname.'/'.$projectInitFile);
 
 $res['status'] = 'ok';
 $res['output'] = $outputLines;

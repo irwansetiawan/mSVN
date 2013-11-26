@@ -1,0 +1,3 @@
+<?php
+
+$projectInitFile = '.mSVN';

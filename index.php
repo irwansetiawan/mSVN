@@ -1,5 +1,6 @@
 <?php
 
+$configFile = dirname(__FILE__).'/init.php';
 $configFile = dirname(__FILE__).'/config.php';
 
 if (!file_exists($configFile)) {
@@ -12,7 +13,8 @@ $contents = scandir($baseDir);
 
 $homeDirs = array();
 foreach($contents as $content) {
-    if (!in_array($content, $ignoredFoldersAndFiles) && is_dir($baseDir.'/'.$content)) {
+    if (!in_array($content, $ignoredFoldersAndFiles) && is_dir($baseDir.'/'.$content) 
+        && file_exists($baseDir.'/'.$content.'/'.$projectInitFile)) {
         $homeDirs[] = array(
             'path' => $baseDir.'/'.$content,
             'dir_name' => $content
