@@ -31,7 +31,7 @@ foreach($homeDirs as $idx => $homeDir) {
             $homeDirs[$idx]['svn_url'] = $svnUrl;
             $branchName = 'trunk';
             if (preg_match('#/branches/([^\/]*)#i', $svnUrl, $matches)) {
-            $branchName = $matches[1];
+                $branchName = $matches[1];
             }
             $homeDirs[$idx]['branch_name'] = $branchName;
             $homeDirs[$idx]['site_url'] = strtolower(sprintf("http://%s.$mainHost", $branchName));
@@ -43,6 +43,11 @@ foreach($homeDirs as $idx => $homeDir) {
     }
     $outputLines = array();
     exec('cd '.$homeDir['path'].'; svn stat;', $outputLines);
+    foreach($outputLines as $idx => $output) {
+        if (substr($output, 0, strlen($projectInitFile)+2) == '? '.$projectInitFile) {
+            unset($outputLines[$idx]);
+        }
+    }
     $homeDirs[$idx]['changes'] = $outputLines;
 }
 
