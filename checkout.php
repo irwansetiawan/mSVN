@@ -14,6 +14,9 @@ $outputLines = shell_exec('cd '.$baseDir.'; '.
                           'svn checkout --username '.$svnUsername.' --password '.$svnPassword.' --non-interactive '.
                                         $svnUrl.' '.$dirname.' 2>&1;');
 
+shell_exec('cd '.$baseDir.'; '.
+           'touch '.$dirname.'/.mSVN');
+
 $res['status'] = 'ok';
 $res['output'] = $outputLines;
 
