@@ -11,7 +11,7 @@ $res['svnurl'] = $svnUrl;
 $projectName = $branchName = NULL;
 
 // check if svn url format is correct
-if (preg_match('/\/([^\/]*)\/trunk$/', $svnUrl, $matches)) { // is trunk copy
+if (preg_match('/\/([^\/]*)\/trunk\/?$/', $svnUrl, $matches)) { // is trunk copy
 	$projectName = $matches[1];
 	$branchName = 'trunk';
 } else if (preg_match('/\/([^\/]*)\/branches\/([^\/]*)\/?$/', $svnUrl, $matches)) { // is branch copy
