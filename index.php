@@ -44,11 +44,15 @@ foreach($homeDirs as $idx => $homeDir) {
     $outputLines = array();
     exec('cd '.$homeDir['path'].'; svn stat;', $outputLines);
     foreach($outputLines as $lidx => $output) {
-        if (preg_match('#^\?\s+'.$projectInitFile.'$#', $output)) {
+        if (preg_match('#^\?\s+#'.$projectInitFile.'$#', $output)) {
             unset($outputLines[$lidx]);
+        } else if (preg_match('#(.+)\s+([^\s]+)$#i', $output, $matches)) {
+            $homeDirs[$idx]['changes'][] = array(
+                'status' => $matches[1],
+                'file'   => $matches[2]
+            );
         }
     }
-    $homeDirs[$idx]['changes'] = $outputLines;
 }
 
 
@@ -236,8 +240,8 @@ foreach($homeDirs as $idx => $homeDir) {
                         Local Changes:<br>
                         <ul class="changes">
                             <?php foreach($homeDir['changes'] as $change) { ?>
-                            <li class="file" data-filename="<?php if (preg_match('/([^\s]+)$/i', $change, $matches)) { echo $matches[1]; } ?>">
-                                <?php echo $change ?> &nbsp;
+                            <li class="file" data-filename="<?php if (preg_match('/([^\s]+)$/i', $change['file'], $matches)) { echo $matches[1]; } ?>">
+                                <?php echo $change['status'] ?> &nbsp; <?php echo $change['file'] ?>
                                 <a href="#" class="svndiff-btn"><i class="icon-file-text-alt"></i></a> &nbsp;
                                 <a href="#" class="svnrevert-btn"><i class="icon-undo"></i></a>
                             </li>
