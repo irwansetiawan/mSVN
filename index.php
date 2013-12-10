@@ -243,7 +243,8 @@ foreach($homeDirs as $idx => $homeDir) {
                             <li class="file" data-filename="<?php if (preg_match('/([^\s]+)$/i', $change['file'], $matches)) { echo $matches[1]; } ?>">
                                 <?php echo $change['status'] ?> &nbsp; <?php echo $change['file'] ?>
                                 <a href="#" class="svndiff-btn"><i class="icon-file-text-alt"></i></a> &nbsp;
-                                <a href="#" class="svnrevert-btn"><i class="icon-undo"></i></a>
+                                <a href="#" class="svnrevert-btn"><i class="icon-undo"></i></a> &nbsp;
+                                <a href="<?php echo $homeDir['site_url'].'/'.$change['file'] ?>" class="externallink-btn"><i class="icon-external-link"></i></a>
                             </li>
                             <?php } ?>
                         </ul>
