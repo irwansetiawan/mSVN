@@ -23,7 +23,7 @@ if (preg_match('/\/([^\/]*)\/trunk\/?$/', $svnUrl, $matches)) { // is trunk copy
 }
 
 if (!empty($projectName) && !empty($branchName)) {
-	$dirname = strtolower($projectName.'-'.$branchName);
+	$dirname = $projectName.'-'.$branchName;
 	$res['dirname'] = $dirname;
 
 	$outputLines = shell_exec('cd '.$baseDir.'; '.

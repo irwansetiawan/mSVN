@@ -34,7 +34,7 @@ foreach($homeDirs as $idx => $homeDir) {
                 $branchName = $matches[1];
             }
             $homeDirs[$idx]['branch_name'] = $branchName;
-            $homeDirs[$idx]['site_url'] = strtolower(sprintf("http://%s.$mainHost", $homeDir['dir_name']));
+            $homeDirs[$idx]['site_url'] = sprintf("http://%s.$mainHost", $homeDir['dir_name']);
         }
         else if (preg_match('/^Revision\:\s?(\d+)$/i', $output, $matches)) {
             $revision = $matches[1];
